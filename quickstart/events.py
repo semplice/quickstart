@@ -58,6 +58,9 @@ def connect(clss):
 	
 	for event, to_connect in clss.events.items():				
 		for obj in to_connect:
+			if "-" in event:
+				# Replace - with _ because python doesn't like them...
+				event = event.replace("-","_")
 			if not hasattr(clss, "on_%s_%s" % (obj, event)):
 				print("quickstart: unable to connect %s. Event handler not found!" % obj)
 				continue
