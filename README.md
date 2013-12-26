@@ -6,12 +6,14 @@ quickstart is a python library that has the aim to ease and reduce the work need
 What does it provide?
 ---------------------
 
-Currently (2013-11-16):
+Currently (2013-12-26):
  * Easy load of GtkBuilder UI files
  * A dynamic dictionary where the widgets are stored, removing the need to always call builder.get_object() to get a widget.
  * Easy load of a custom CSS file to further customize the look and feel of the application
  * Easy to use helpers to get objects connected without wasting precious lines of code
  * Easy to use threads
+ * Scenes support
+ * Translations
  * And more to come...
 
 Examples, please!
