@@ -24,6 +24,8 @@ __all__ = (
 	"events",
 	"style",
 	"threads",
+	"scenes",
+	"translations",
 )
 
 from . import *
