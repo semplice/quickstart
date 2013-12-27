@@ -52,9 +52,9 @@ class GUI:
 	
 	def __init__(self):
 		
-		self.objects["label1"].set_markup("<b>CIAO QUICKSTART!</b>")
-		self.objects["main_window"].show_all()
+		self.objects.label1.set_markup("<b>CIAO QUICKSTART!</b>")
+		self.objects.main_window.show_all()
 		
-		self.objects["button1"].set_label("Se mi clicchi ti saluto!")
+		self.objects.button1.set_label("Se mi clicchi ti saluto!")
 				
 quickstart.common.quickstart(GUI)

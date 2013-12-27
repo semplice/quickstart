@@ -25,7 +25,6 @@ class DynamicModule(object):
 	def __init__(self, module):
 		
 		self.module = "quickstart.%s" % module
-		self.loaded = None
 	
 	def __getattribute__(self, attr):
 		
