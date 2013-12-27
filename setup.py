@@ -22,7 +22,7 @@
 from distutils.core import setup
 
 setup(name='quickstart',
-	version='1.0.0',
+	version='1.1.0',
 	description='a python library that has the aim to ease and reduce the work needed to create rich, interactive, GTK3 based graphical applications.',
 	author='Eugenio Paolantonio',
 	author_email='me@medesimo.eu',
@@ -30,6 +30,6 @@ setup(name='quickstart',
 	packages=[
 		"quickstart"
       ],
-	requires=['gi.repository.Gtk', 'gi.repository.GObject', 'gi.repository.Gdk', 'importlib', 'gettext', 'locale', 'signal', 'threading']
+	requires=['gi.repository.Gtk', 'gi.repository.GObject', 'gi.repository.Gdk', 'importlib', 'gettext', 'locale', 'signal', 'threading', 'sys']
 )
 

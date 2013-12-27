@@ -18,6 +18,26 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #
 
+import sys
+import importlib
+
+class DynamicModule(object):
+	def __init__(self, module):
+		
+		self.module = "quickstart.%s" % module
+	
+	def __getattribute__(self, attr):
+		
+		modname = object.__getattribute__(self, "module") 
+		
+		if not modname in sys.modules:
+			# Load now
+			mod = importlib.import_module(modname)
+		else:
+			mod = sys.modules[modname]
+		
+		return getattr(mod, attr)
+
 __all__ = (
 	"builder",
 	"common",
@@ -28,4 +48,5 @@ __all__ = (
 	"translations",
 )
 
-from . import *
+for module in __all__:
+	globals()[module] = DynamicModule(module)

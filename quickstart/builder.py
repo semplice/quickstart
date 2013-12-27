@@ -60,6 +60,10 @@ class from_file:
 				itm = obj
 			
 			return itm
+		
+		__getattr__ = __getitem__
+		__setattr__ = dict.__setitem__
+		__delattr__ = dict.__delitem__
 	
 	def __init__(self, uipath):
 		""" Initializes the class. """
