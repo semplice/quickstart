@@ -1,3 +1,11 @@
+python-quickstart (1.1.0-1) unstable; urgency=low
+
+  * Import package modules on demand.
+  * builder: made DynamicObjectsDictionary contents also attributes.
+  * debian/control: require Python 2.7+.
+
+ -- Eugenio Paolantonio (g7) <me@medesimo.eu>  Fri, 27 Dec 2013 18:12:35 +0100
+
 python-quickstart (1.0.0-2) unstable; urgency=low
 
   * Shit happens.
