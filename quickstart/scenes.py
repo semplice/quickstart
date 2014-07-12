@@ -38,6 +38,14 @@ class BaseScene:
 	def on_scene_called(self):
 		
 		pass
+	
+	def on_scene_asked_to_close(self):
+		"""
+		Called when the scene has been asked to close (via SceneManager.can_close()).
+		Returns True if the scene can be switched, False otherwise.
+		"""
+		
+		return True
 
 class SceneManager:
 	""" A SceneManager() class is an object that manages the scenes. """
@@ -53,6 +61,17 @@ class SceneManager:
 		self.container = container
 		self.scenes = scenes
 	
+	def can_close(self):
+		"""
+		This method calls on_scene_asked_to_close on the current scene, and
+		returns its result.
+		"""
+		
+		if self.current_scene:
+			return self.loaded_scenes[self.current_scene]["object"].on_scene_asked_to_close()
+		else:
+			return True
+	
 	def load(self, scene):
 
 		if self.current_scene == scene:
@@ -67,13 +86,13 @@ class SceneManager:
 		
 		self.__load(scene)
 	
-	@quickstart.threads.thread
+	@quickstart.threads.on_idle
 	def __load(self, scene):
 		""" Loads a scene. """
-		
+				
 		if self.scenes[scene].startswith(":"):
 			# Scene is an internal page
-			self.container.set_current_page(int(self.scenes[scene].replace(":","")))
+			self.container.set_visible_child_name(self.scenes[scene].replace(":",""))
 		elif not scene in self.loaded_scenes:
 			self.loaded_scenes[scene] = {}
 			self.loaded_scenes[scene]["module"] = importlib.import_module(self.scenes[scene])
@@ -87,28 +106,31 @@ class SceneManager:
 				quickstart.events.connect(self.loaded_scenes[scene]["object"])
 			
 			# Remove scene container's parent, so that we can reparent it later
-			self.loaded_scenes[scene]["object"].scene_container.get_parent().remove(self.loaded_scenes[scene]["object"].scene_container)
+			parent = self.loaded_scenes[scene]["object"].scene_container.get_parent()
+			if parent:
+				parent.remove(self.loaded_scenes[scene]["object"].scene_container)
 			
 			# Do the real thing and pack the main scene widget to the container.
 			# The index will be stored in self.loaded_scenes[scene]["page"].
-			self.loaded_scenes[scene]["page"] = self.container.append_page(self.loaded_scenes[scene]["object"].scene_container, None)
-			self.container.set_current_page(self.loaded_scenes[scene]["page"])
+			self.loaded_scenes[scene]["page"] = self.container.add_named(self.loaded_scenes[scene]["object"].scene_container, scene)
+			self.container.set_visible_child(self.loaded_scenes[scene]["object"].scene_container)
 			
 			# fire called
 			GObject.idle_add(self.loaded_scenes[scene]["object"].on_scene_called)
 		else:
 			# Simply set the page, scene already loaded.
-			self.container.set_current_page(self.loaded_scenes[scene]["page"])
+			self.container.set_visible_child(self.loaded_scenes[scene]["object"].scene_container)
 
 			# fire called
 			GObject.idle_add(self.loaded_scenes[scene]["object"].on_scene_called)
-		
+				
 		self.current_scene = scene
 
 def initialize(clss):
 	
 	# Get the container
-	container = clss.objects[clss.scenes_container]
+	#container = clss.objects[clss.scenes_container]
+	container = clss.scene_container
 	
 	# Return a new SceneManager
 	return SceneManager(clss, container, clss.scenes)
