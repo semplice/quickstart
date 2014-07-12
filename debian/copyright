@@ -1,5 +1,5 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: python-nala
+Upstream-Name: python-quickstart
 Source: http://github.com/semplice/quickstart
 
 Files: *

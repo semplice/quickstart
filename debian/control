@@ -1,17 +1,18 @@
-Source: python-quickstart
+Source: python3-quickstart
 Section: python
 Priority: optional
 Maintainer: Eugenio Paolantonio (g7) <me@medesimo.eu>
-Build-Depends: python (>= 2.6.6-3), python-all, debhelper (>= 8.0.0)
-X-Python-Version: >= 2.7
+Build-Depends: dh-python, python3-all (>= 3.1.2-7~), debhelper (>= 8.0.0)
+X-Python3-Version: >= 3.1
 Standards-Version: 3.9.5
 Homepage: https://github.com/semplice/quickstart
 Vcs-Git: git://github.com/semplice/quickstart.git
 Vcs-Browser: https://github.com/semplice/quickstart
 
-Package: python-quickstart
+Package: python3-quickstart
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}, python-gi, gir1.2-glib-2.0, gir1.2-gtk-3.0
+Depends: ${misc:Depends}, ${python:Depends}, python3-gi, gir1.2-glib-2.0, gir1.2-gtk-3.0
+Breaks: ${python:Breaks}
 Description: library to easily and rapidly create graphical applications
  quickstart is a python library that has the aim to ease and reduce
  the work needed to create rich, interactive, GTK3 based graphical
