@@ -1,3 +1,11 @@
+python3-quickstart (2.0.0-1) unstable; urgency=medium
+
+  * Switched to Python3, merged the improvements made
+    by the vera-control-center efforts.
+  * debian/: ported to python3.
+
+ -- Eugenio Paolantonio (g7) <me@medesimo.eu>  Sat, 12 Jul 2014 13:12:02 +0200
+
 python-quickstart (1.1.0-1) unstable; urgency=low
 
   * Import package modules on demand.
