@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 #
 # quickstart - Refreshing the GUI world.
@@ -45,10 +45,10 @@ class GUI:
 	def on_button2_clicked(self, button):
 		
 		for item in range(100):
-			print item
+			print(item)
 			GObject.idle_add(button.set_label, str(item))
 			time.sleep(0.1)
-		print "END"
+		print("END")
 	
 	def __init__(self):
 		

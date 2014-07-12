@@ -18,6 +18,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #
 
+import os
 from gi.repository import Gtk, Gdk
 
 class custom_css:
@@ -44,13 +45,16 @@ class custom_css:
 	def __call__(self, clss):
 		""" Magic. """
 		
-		def wrapper(*args, **kwargs):	
-
-			clss.__cssProvider = Gtk.CssProvider()
-			clss.__cssProvider.load_from_path(self.csspath)
-			clss.__screen = Gdk.Screen.get_default()
-			clss.__styleContext = Gtk.StyleContext()
-			clss.__styleContext.add_provider_for_screen(clss.__screen, clss.__cssProvider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
+		def wrapper(*args, **kwargs):
+			
+			if os.path.exists(self.csspath):
+				clss.__cssProvider = Gtk.CssProvider()
+				clss.__cssProvider.load_from_path(self.csspath)
+				clss.__screen = Gdk.Screen.get_default()
+				clss.__styleContext = Gtk.StyleContext()
+				clss.__styleContext.add_provider_for_screen(clss.__screen, clss.__cssProvider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
+			else:
+				print("quickstart: unable to load specified css styling.")
 
 			return clss(*args, **kwargs)
 		

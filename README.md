@@ -1,7 +1,7 @@
 quickstart
 ==========
 
-quickstart is a python library that has the aim to ease and reduce the work needed to create rich, interactive, GTK3 based graphical applications.
+quickstart is a python3 library that has the aim to ease and reduce the work needed to create rich, interactive, GTK3 based graphical applications.
 
 What does it provide?
 ---------------------

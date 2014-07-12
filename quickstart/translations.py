@@ -36,12 +36,12 @@ class Translation:
 	def load(self, install=False):
 	
 		self.__gettext  = gettext.translation(self.domain, self.localedir, self.languages, fallback=True)
-		self._ = self.__gettext.ugettext
+		self._ = self.__gettext.gettext
 		
 	def install(self):
 		""" Installs the _() function into the builtins namespace. """
 		
-		self.__gettext.install(unicode=True)
+		self.__gettext.install()
 	
 	def change_locale(self, newlanguages, install=True):
 		""" Changes the current locale with a new one, specified in newlanguages. """
