@@ -57,7 +57,8 @@ def quickstart(gui, with_threads=True):
 	
 	# Handle threads?
 	if with_threads:
-		from gi.repository import GObject
+		from gi.repository import GObject, Gdk
 		GObject.threads_init()
+		Gdk.threads_init()
 	
 	Gtk.main()
