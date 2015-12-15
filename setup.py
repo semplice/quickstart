@@ -22,7 +22,7 @@
 from distutils.core import setup
 
 setup(name='quickstart',
-	version='2.0.0',
+	version='2.0.1',
 	description='a python library that has the aim to ease and reduce the work needed to create rich, interactive, GTK3 based graphical applications.',
 	author='Eugenio Paolantonio',
 	author_email='me@medesimo.eu',
